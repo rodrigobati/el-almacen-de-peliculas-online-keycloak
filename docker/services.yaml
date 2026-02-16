@@ -1,0 +1,22 @@
+name: videoclub
+services:
+  postgresql:
+    extends:
+      file: ./postgresql.yaml
+      service: postgresql
+  keycloak:
+    extends:
+      file: ./keycloak.yaml
+      service: keycloak
+  rabbit:
+    extends:
+      file: ./rabbit.yaml
+      service: rabbit
+  mailhog:
+    extends:
+      file: ./email.yaml
+      service: mailhog
+  gateway:
+    extends:
+      file: ./apigateway.yaml
+      service: gateway
