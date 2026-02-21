@@ -8,13 +8,11 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import java.util.List;
 
-import org.springframework.context.annotation.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 @RequestMapping(value = "/tests", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -41,7 +39,7 @@ public class TestResource {
     @PostMapping
     @ApiResponse(responseCode = "201")
     @Operation(summary = "create  Test", security = @SecurityRequirement(name = "bearerAuth"))
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Long> createTest(@RequestBody @Valid final TestDTO testDTO) {
         final Long createdId = testService.create(testDTO);
         return new ResponseEntity<>(createdId, HttpStatus.CREATED);
@@ -57,7 +55,7 @@ public class TestResource {
 
     @DeleteMapping("/{id}")
     @ApiResponse(responseCode = "204")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "delete by id", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<Void> deleteTest(@PathVariable(name = "id") final Long id) {
         testService.delete(id);
