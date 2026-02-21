@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping(value = "/movies", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MovieResource {
@@ -40,7 +39,7 @@ public class MovieResource {
     @PostMapping
     @ApiResponse(responseCode = "201")
     @Operation(summary = "create  Test", security = @SecurityRequirement(name = "bearerAuth"))
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Long> createTest(@RequestBody @Valid final TestDTO testDTO) {
         final Long createdId = testService.create(testDTO);
         return new ResponseEntity<>(createdId, HttpStatus.CREATED);
@@ -56,7 +55,7 @@ public class MovieResource {
 
     @DeleteMapping("/{id}")
     @ApiResponse(responseCode = "204")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "delete by id", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<Void> deleteTest(@PathVariable(name = "id") final Long id) {
         testService.delete(id);
