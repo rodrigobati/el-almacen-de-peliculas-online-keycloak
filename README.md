@@ -1,5 +1,22 @@
 # el-almacen-de-peliculas-online-keycloak
 
+## Estado del componente
+
+Este proyecto es infraestructura de autenticacion/SSO y ejemplos de API protegida; no es una vertical de negocio del almacen. Su proposito es emitir/validar tokens OAuth2/OIDC con Keycloak y probar endpoints protegidos por JWT.
+
+### Servicios HTTP que expone
+
+| Metodo | Endpoint | Proposito |
+| --- | --- | --- |
+| GET | `/` | Endpoint home/demo. |
+| GET/POST/PUT/DELETE | `/movies/**` | CRUD demo de peliculas protegido por seguridad. |
+| GET/POST/PUT/DELETE | `/tests/**` | Endpoints demo de prueba. |
+| Keycloak | `/realms/**`, `/auth/**` | Endpoints de autenticacion del servidor Keycloak cuando se usa la infraestructura. |
+
+### Eventos que publica o consume
+
+No publica ni consume eventos de dominio del sistema. Keycloak puede registrar eventos de autenticacion/admin en su propia configuracion, pero no hay integracion de eventos de negocio implementada aqui.
+
 ## OPEN API
 
 - https://springdoc.org/#spring-data-rest-support
